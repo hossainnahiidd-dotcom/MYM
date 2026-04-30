@@ -1,0 +1,229 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id                   String    @id @default(cuid())
+  name                 String?
+  email                String?   @unique
+  emailVerified        DateTime?
+  image                String?
+  password             String?
+  role                 UserRole  @default(PERSONAL)
+  plan                 Plan      @default(FREE)
+  stripeCustomerId     String?   @unique
+  stripeSubscriptionId String?   @unique
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  accounts             Account[]
+  clients              Client[]
+  payments             Payment[]
+  sessions             Session[]
+  invoices             Invoice[]
+}
+
+model Client {
+  id        String       @id @default(cuid())
+  userId    String
+  name      String
+  email     String?
+  phone     String?
+  address   String?
+  notes     String?
+  status    ClientStatus @default(ACTIVE)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  debts     Debt[]
+  payments  Payment[]
+  invoices  Invoice[]
+}
+
+model Debt {
+  id            String       @id @default(cuid())
+  clientId      String
+  title         String
+  description   String?
+  amount        Float
+  amountPaid    Float        @default(0)
+  currency      String       @default("GBP")
+  dueDate       DateTime?
+  interestRate  Float?       @default(0)
+  lateFeeAmount Float?       @default(0)
+  status        DebtStatus   @default(PENDING)
+  category      DebtCategory @default(GENERAL)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  client        Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  payments      Payment[]
+  reminders     Reminder[]
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  debtId    String
+  clientId  String
+  userId    String
+  amount    Float
+  currency  String        @default("GBP")
+  method    PaymentMethod @default(MANUAL)
+  reference String?
+  notes     String?
+  paidAt    DateTime      @default(now())
+  createdAt DateTime      @default(now())
+  client    Client        @relation(fields: [clientId], references: [id])
+  debt      Debt          @relation(fields: [debtId], references: [id], onDelete: Cascade)
+  user      User          @relation(fields: [userId], references: [id])
+}
+
+model Reminder {
+  id          String          @id @default(cuid())
+  debtId      String
+  channel     ReminderChannel
+  status      ReminderStatus  @default(PENDING)
+  message     String?
+  sentAt      DateTime?
+  scheduledAt DateTime
+  createdAt   DateTime        @default(now())
+  debt        Debt            @relation(fields: [debtId], references: [id], onDelete: Cascade)
+}
+
+model Invoice {
+  id        String        @id @default(cuid())
+  userId    String
+  clientId  String
+  invoiceNo String        @unique
+  title     String
+  notes     String?
+  terms     String?
+  status    InvoiceStatus @default(DRAFT)
+  issueDate DateTime      @default(now())
+  dueDate   DateTime?
+  subtotal  Float
+  taxRate   Float         @default(0)
+  taxAmount Float         @default(0)
+  total     Float
+  currency  String        @default("GBP")
+  paidAt    DateTime?
+  sentAt    DateTime?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  client    Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  items     InvoiceItem[]
+}
+
+model InvoiceItem {
+  id          String  @id @default(cuid())
+  invoiceId   String
+  description String
+  quantity    Float   @default(1)
+  unitPrice   Float
+  amount      Float
+  invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
+
+enum UserRole {
+  PERSONAL
+  BUSINESS
+  ADMIN
+  DEBT_MANAGER
+}
+
+enum Plan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum ClientStatus {
+  ACTIVE
+  INACTIVE
+  BLOCKED
+}
+
+enum DebtStatus {
+  PENDING
+  PARTIAL
+  PAID
+  OVERDUE
+  WRITTEN_OFF
+}
+
+enum DebtCategory {
+  GENERAL
+  RENT
+  INVOICE
+  LOAN
+  SUBSCRIPTION
+  SERVICE
+}
+
+enum PaymentMethod {
+  MANUAL
+  STRIPE
+  BANK_TRANSFER
+  CASH
+  CHEQUE
+}
+
+enum ReminderChannel {
+  EMAIL
+  SMS
+  WHATSAPP
+}
+
+enum ReminderStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  VIEWED
+  PAID
+  OVERDUE
+  CANCELLED
+}

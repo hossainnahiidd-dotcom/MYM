@@ -1,0 +1,42 @@
+{
+  "name": "MYM – Monitor Your Money",
+  "short_name": "MYM",
+  "description": "Track every penny. Recover every payment.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "business"],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "url": "/dashboard",
+      "description": "Go to your dashboard"
+    },
+    {
+      "name": "Add Client",
+      "url": "/dashboard/clients/new",
+      "description": "Add a new client"
+    },
+    {
+      "name": "Add Debt",
+      "url": "/dashboard/debts/new",
+      "description": "Record a new debt"
+    }
+  ]
+}

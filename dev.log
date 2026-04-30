@@ -1,0 +1,456 @@
+
+> mym@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.27:3000
+- Environments: .env
+✓ Ready in 857ms
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+
+ GET /dashboard 200 in 3.3s (next.js: 652ms, proxy.ts: 267ms, application-code: 2.4s)
+ GET /icons/icon-192.png 404 in 347ms (next.js: 74ms, application-code: 273ms)
+ GET /api/auth/session 200 in 1171ms (next.js: 1077ms, proxy.ts: 29ms, application-code: 65ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0kh36ar._.js:130:156
+
+  127 async function InvoicesPage() {
+  128     const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getServerSession"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["authOptions"]);
+  129     const userId = session?.user?.id;
+→ 130     const invoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0kh36ar._.js:130:156
+
+  127 async function InvoicesPage() {
+  128     const session = await (0, {imported module ./nodemodules/next-auth/index.js}["getServerSession"])({imported module ./lib/auth.ts}["authOptions"]);
+  129     const userId = session?.user?.id;
+→ 130     const invoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:30:41)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:30:20)
+  28 |   const userId = (session?.user as any)?.id;
+  29 |
+> 30 |   const invoices = await prisma.invoice.findMany({
+     |                                         ^
+  31 |     where: { userId },
+  32 |     include: { client: { select: { name: true } } },
+  33 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '1888816140'
+}
+ GET /dashboard/invoices 200 in 1519ms (next.js: 1064ms, proxy.ts: 10ms, application-code: 445ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0kh36ar._.js:130:156
+
+  127 async function InvoicesPage() {
+  128     const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getServerSession"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["authOptions"]);
+  129     const userId = session?.user?.id;
+→ 130     const invoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:30:41)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:30:20)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:150)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  28 |   const userId = (session?.user as any)?.id;
+  29 |
+> 30 |   const invoices = await prisma.invoice.findMany({
+     |                                         ^
+  31 |     where: { userId },
+  32 |     include: { client: { select: { name: true } } },
+  33 |     orderBy: { createdAt: "desc" },
+ GET /dashboard/settings 200 in 494ms (next.js: 98ms, proxy.ts: 16ms, application-code: 379ms)
+ GET /api/auth/session 200 in 119ms (next.js: 70ms, proxy.ts: 22ms, application-code: 28ms)
+ GET /icons/icon-192.png 404 in 207ms (next.js: 8ms, application-code: 199ms)
+ GET /dashboard 200 in 300ms (next.js: 9ms, proxy.ts: 14ms, application-code: 277ms)
+ GET /icons/icon-192.png 404 in 77ms (next.js: 8ms, application-code: 69ms)
+ GET /dashboard/clients 200 in 352ms (next.js: 104ms, proxy.ts: 14ms, application-code: 234ms)
+ GET /icons/icon-192.png 404 in 120ms (next.js: 16ms, application-code: 104ms)
+ GET /dashboard/debts 200 in 385ms (next.js: 116ms, proxy.ts: 11ms, application-code: 258ms)
+ GET /icons/icon-192.png 404 in 90ms (next.js: 6ms, application-code: 84ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0kh36ar._.js:130:156
+
+  127 async function InvoicesPage() {
+  128     const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getServerSession"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["authOptions"]);
+  129     const userId = session?.user?.id;
+→ 130     const invoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0kh36ar._.js:130:156
+
+  127 async function InvoicesPage() {
+  128     const session = await (0, {imported module ./nodemodules/next-auth/index.js}["getServerSession"])({imported module ./lib/auth.ts}["authOptions"]);
+  129     const userId = session?.user?.id;
+→ 130     const invoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:30:41)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:30:20)
+  28 |   const userId = (session?.user as any)?.id;
+  29 |
+> 30 |   const invoices = await prisma.invoice.findMany({
+     |                                         ^
+  31 |     where: { userId },
+  32 |     include: { client: { select: { name: true } } },
+  33 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '1888816140'
+}
+ GET /dashboard/invoices 200 in 464ms (next.js: 10ms, proxy.ts: 8ms, application-code: 445ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0kh36ar._.js:130:156
+
+  127 async function InvoicesPage() {
+  128     const session = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$auth$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getServerSession"])(__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["authOptions"]);
+  129     const userId = session?.user?.id;
+→ 130     const invoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:30:41)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:30:20)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:150)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  28 |   const userId = (session?.user as any)?.id;
+  29 |
+> 30 |   const invoices = await prisma.invoice.findMany({
+     |                                         ^
+  31 |     where: { userId },
+  32 |     include: { client: { select: { name: true } } },
+  33 |     orderBy: { createdAt: "desc" },
+ GET /dashboard/reminders 200 in 311ms (next.js: 77ms, proxy.ts: 12ms, application-code: 221ms)
+ GET /dashboard/reports 200 in 329ms (next.js: 78ms, proxy.ts: 5ms, application-code: 245ms)
+ GET /icons/icon-192.png 404 in 77ms (next.js: 7ms, application-code: 70ms)
+✓ Compiled in 219ms
+ GET / 200 in 1105ms (next.js: 228ms, proxy.ts: 178ms, application-code: 700ms)
+ GET /api/auth/session 200 in 329ms (next.js: 279ms, proxy.ts: 15ms, application-code: 36ms)
+ GET /icons/icon-192.png 404 in 471ms (next.js: 27ms, application-code: 444ms)
+ GET /api/auth/session 200 in 79ms (next.js: 33ms, proxy.ts: 17ms, application-code: 29ms)
+ GET /auth/register 200 in 186ms (next.js: 96ms, proxy.ts: 16ms, application-code: 74ms)
+ GET /icons/icon-192.png 404 in 150ms (next.js: 10ms, application-code: 140ms)
+ GET /api/auth/providers 200 in 48ms (next.js: 19ms, proxy.ts: 5ms, application-code: 24ms)
+ GET /api/auth/csrf 200 in 25ms (next.js: 7ms, proxy.ts: 5ms, application-code: 14ms)
+(node:14616) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ POST /api/auth/signin/google 200 in 208ms (next.js: 8ms, proxy.ts: 8ms, application-code: 192ms)
+ GET /api/auth/callback/google?state=vbwOp3k9Mfkx1x9gSR7nEL1rAxi4APL0GGzFnlVY94A&iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AeoWuM-kHtfNV4mVwc95L9STwD2Rzt4fMKz6lZmsyz5NMiwF7kxlvN3bbVltiHdmMLvP4g&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none 302 in 1380ms (next.js: 12ms, proxy.ts: 6ms, application-code: 1362ms)
+ GET /dashboard 200 in 1221ms (next.js: 173ms, proxy.ts: 11ms, application-code: 1037ms)
+ GET /api/auth/session 200 in 45ms (next.js: 23ms, proxy.ts: 7ms, application-code: 15ms)
+ GET /icons/icon-192.png 404 in 99ms (next.js: 6ms, application-code: 93ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '2757494100'
+}
+ GET /dashboard/invoices 200 in 771ms (next.js: 294ms, proxy.ts: 9ms, application-code: 468ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:150)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" },
+✓ Compiled in 307ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '2757494100'
+}
+ GET /dashboard/invoices 500 in 788ms (next.js: 125ms, proxy.ts: 88ms, application-code: 575ms)
+ GET /icons/icon-192.png 404 in 95ms (next.js: 25ms, application-code: 70ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:105)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" },
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '2757494100'
+}
+ GET /dashboard/invoices 500 in 368ms (next.js: 5ms, proxy.ts: 5ms, application-code: 358ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:105)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" },
+ GET /icons/icon-192.png 404 in 50ms (next.js: 5ms, application-code: 45ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '2757494100'
+}
+ GET /dashboard/invoices 500 in 196ms (next.js: 3ms, proxy.ts: 2ms, application-code: 190ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:105)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" },
+ GET /icons/icon-192.png 404 in 52ms (next.js: 6ms, application-code: 46ms)
+ GET /dashboard 200 in 335ms (next.js: 26ms, proxy.ts: 4ms, application-code: 305ms)
+ GET /icons/icon-192.png 404 in 34ms (next.js: 3ms, application-code: 31ms)
+ GET /auth/register 200 in 96ms (next.js: 17ms, proxy.ts: 3ms, application-code: 76ms)
+ GET /api/auth/session 200 in 163ms (next.js: 116ms, proxy.ts: 4ms, application-code: 42ms)
+ GET /icons/icon-192.png 404 in 160ms (next.js: 5ms, application-code: 155ms)
+ GET /api/auth/providers 200 in 29ms (next.js: 11ms, proxy.ts: 4ms, application-code: 14ms)
+ GET /api/auth/csrf 200 in 15ms (next.js: 3ms, proxy.ts: 2ms, application-code: 9ms)
+ POST /api/auth/signin/google 200 in 138ms (next.js: 5ms, proxy.ts: 4ms, application-code: 130ms)
+ GET /api/auth/callback/google?state=y2KBvipyPuLQZr2juKZpHT_tn5OfttgCP6JwIsj8i1Y&iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AeoWuM_sEhAceGQFy_LSGcMv77nAgvEjRqNtwfmGtMh2Bif7F0qOsq9O-gkg5Tx16Ye50g&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=none 302 in 627ms (next.js: 5ms, proxy.ts: 4ms, application-code: 618ms)
+ GET /dashboard 200 in 311ms (next.js: 3ms, proxy.ts: 4ms, application-code: 304ms)
+ GET /api/auth/session 200 in 36ms (next.js: 21ms, proxy.ts: 5ms, application-code: 10ms)
+ GET /icons/icon-192.png 404 in 86ms (next.js: 6ms, application-code: 80ms)
+prisma:error 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+⨯ Error [PrismaClientKnownRequestError]: 
+Invalid `{imported module ./lib/prisma.ts}["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await {imported module ./lib/prisma.ts}["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at async InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" }, {
+  code: 'P2021',
+  meta: { modelName: 'Invoice', table: 'public.Invoice' },
+  clientVersion: '6.19.3',
+  digest: '2757494100'
+}
+ GET /dashboard/invoices 200 in 174ms (next.js: 4ms, proxy.ts: 3ms, application-code: 167ms)
+[browser] Uncaught PrismaClientKnownRequestError: 
+Invalid `__TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany()` invocation in
+C:\Users\lenovo\OneDrive\Desktop\Ai Data\mym\.next\dev\server\chunks\ssr\[root-of-the-server]__0-nap0n._.js:172:159
+
+  169 const userId = session?.user?.id;
+  170 const { tab: rawTab } = await searchParams;
+  171 const tab = rawTab ?? "all";
+→ 172 const allInvoices = await __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$prisma$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["prisma"].invoice.findMany(
+The table `public.Invoice` does not exist in the current database.
+    at <unknown> (app\dashboard\invoices\page.tsx:38:44)
+    at  InvoicesPage (app\dashboard\invoices\page.tsx:38:23)
+    at resolveErrorDev (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:1919:150)
+    at processFullStringRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2434:29)
+    at processFullBinaryRow (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2393:9)
+    at processBinaryChunk (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2502:221)
+    at progress (file://C:/Users/lenovo/OneDrive/Desktop/Ai Data/mym/.next/dev/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_0p3wegg._.js:2689:13)
+  36 |   const tab = (rawTab ?? "all") as Tab;
+  37 |
+> 38 |   const allInvoices = await prisma.invoice.findMany({
+     |                                            ^
+  39 |     where: { userId },
+  40 |     include: { client: { select: { name: true } } },
+  41 |     orderBy: { createdAt: "desc" },
+ GET /icons/icon-192.png 404 in 46ms (next.js: 4ms, application-code: 42ms)
+ GET / 200 in 303ms (next.js: 89ms, proxy.ts: 6ms, application-code: 208ms)
+ GET /icons/icon-192.png 404 in 37ms (next.js: 3ms, application-code: 34ms)
+ GET /api/auth/session 200 in 37ms (next.js: 9ms, proxy.ts: 4ms, application-code: 24ms)
+ GET /api/auth/session 200 in 47ms (next.js: 11ms, proxy.ts: 3ms, application-code: 33ms)
