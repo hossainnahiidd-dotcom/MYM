@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Search } from "lucide-react";
+import { Bell, Search, Menu } from "lucide-react";
 
 interface TopBarProps {
   user?: {
@@ -8,9 +8,10 @@ interface TopBarProps {
     email?: string | null;
     image?: string | null;
   };
+  onMenuClick?: () => void;
 }
 
-export function TopBar({ user }: TopBarProps) {
+export function TopBar({ user, onMenuClick }: TopBarProps) {
   const initials = user?.name
     ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
     : user?.email?.[0]?.toUpperCase() ?? "?";
@@ -26,6 +27,12 @@ export function TopBar({ user }: TopBarProps) {
     <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6 flex-shrink-0 gap-4">
       {/* Left */}
       <div className="flex items-center gap-4 flex-1 min-w-0">
+        <button
+          onClick={onMenuClick}
+          className="lg:hidden w-9 h-9 flex items-center justify-center rounded-xl text-gray-500 hover:bg-gray-100 transition shrink-0"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
         <div className="relative hidden sm:block w-64">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input

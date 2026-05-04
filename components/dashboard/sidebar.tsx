@@ -27,7 +27,7 @@ const navItems = [
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
-export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
+export function Sidebar({ isAdmin = false, onNavClick }: { isAdmin?: boolean; onNavClick?: () => void }) {
   const pathname = usePathname();
 
   return (
@@ -56,6 +56,7 @@ export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
             <Link
               key={href}
               href={href}
+              onClick={onNavClick}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150",
                 active
@@ -78,6 +79,7 @@ export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
         {isAdmin && (
           <Link
             href="/admin"
+            onClick={onNavClick}
             className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition w-full"
           >
             <ShieldCheck className="w-4 h-4" />
