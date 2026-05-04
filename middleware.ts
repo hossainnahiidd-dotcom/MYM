@@ -1,12 +1,11 @@
-import { type NextRequest } from "next/server";
-import { createClient } from "@/utils/supabase/middleware";
+import { withAuth } from "next-auth/middleware";
 
-export async function middleware(request: NextRequest) {
-  return createClient(request);
-}
+export default withAuth({
+  pages: {
+    signIn: "/auth/login",
+  },
+});
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };
