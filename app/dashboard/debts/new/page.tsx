@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Loader2 } from "lucide-react";
@@ -10,7 +10,7 @@ interface Client {
   name: string;
 }
 
-export default function NewDebtPage() {
+function NewDebtForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const preselectedClientId = searchParams.get("clientId") ?? "";
@@ -259,5 +259,13 @@ export default function NewDebtPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function NewDebtPage() {
+  return (
+    <Suspense>
+      <NewDebtForm />
+    </Suspense>
   );
 }
