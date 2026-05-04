@@ -14,6 +14,8 @@ export async function POST(req: Request) {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const userId = (session.user as any).id;
 
+  if (!stripe) return NextResponse.json({ error: "Stripe not configured" }, { status: 503 });
+
   try {
     const body = await req.json();
     const { plan } = schema.parse(body);
